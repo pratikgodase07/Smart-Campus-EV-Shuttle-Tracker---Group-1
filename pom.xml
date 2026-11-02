@@ -56,6 +56,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.campus.shuttle.SmartCampusShuttleApplication</mainClass>
+                </configuration>
             </plugin>
 
             <!-- Compiler Plugin targeting Java 17 -->
