@@ -1,7 +1,7 @@
-package com.smartcampus.shuttle.dao;
+package com.campus.shuttle_management.dao;
 
-import com.smartcampus.shuttle.model.Shuttle;
-import com.smartcampus.shuttle.rowmapper.ShuttleRowMapper;
+import com.campus.shuttle_management.model.Shuttle;
+import com.campus.shuttle_management.rowmapper.ShuttleRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

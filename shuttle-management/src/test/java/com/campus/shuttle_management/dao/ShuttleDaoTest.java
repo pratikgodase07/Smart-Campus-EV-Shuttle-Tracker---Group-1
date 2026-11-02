@@ -1,6 +1,6 @@
-package com.smartcampus.shuttle.dao;
+package com.campus.shuttle_management.dao;
 
-import com.smartcampus.shuttle.model.Shuttle;
+import com.campus.shuttle_management.model.Shuttle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.Optional;
@@ -84,7 +83,6 @@ class ShuttleDaoTest {
     @Test
     @DisplayName("FR-3: updateShuttleBatteryAndStatus updates both battery percentage and status")
     void testUpdateShuttleBatteryAndStatus() {
-        // Find existing shuttle 1
         Optional<Shuttle> initial = shuttleDao.findById(1);
         assertTrue(initial.isPresent());
 

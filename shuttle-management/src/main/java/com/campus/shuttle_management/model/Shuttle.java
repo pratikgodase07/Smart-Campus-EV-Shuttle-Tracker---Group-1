@@ -1,4 +1,4 @@
-package com.smartcampus.shuttle.model;
+package com.campus.shuttle_management.model;
 
 import java.util.Objects;
 

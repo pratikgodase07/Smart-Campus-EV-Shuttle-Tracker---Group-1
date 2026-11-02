@@ -1,6 +1,6 @@
-package com.smartcampus.shuttle.dao;
+package com.campus.shuttle_management.dao;
 
-import com.smartcampus.shuttle.model.Shuttle;
+import com.campus.shuttle_management.model.Shuttle;
 
 import java.util.List;
 import java.util.Optional;

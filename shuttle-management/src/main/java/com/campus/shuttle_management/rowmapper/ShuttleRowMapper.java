@@ -1,6 +1,6 @@
-package com.smartcampus.shuttle.rowmapper;
+package com.campus.shuttle_management.rowmapper;
 
-import com.smartcampus.shuttle.model.Shuttle;
+import com.campus.shuttle_management.model.Shuttle;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
