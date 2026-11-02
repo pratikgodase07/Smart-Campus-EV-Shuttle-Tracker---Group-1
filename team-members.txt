@@ -1,9 +1,43 @@
 Smart Campus EV Shuttle Tracker
 
-Team Members:
-1. Pratik
-2. Atharva
-3. Himanshu
-4. Omkar
-5. Utkarsh
-6. Varun
+==================================================
+Team Members & Assigned Roles:
+==================================================
+
+1. Pratik Godase (Member 1)
+   - Role: Project Lead & Architecture Setup
+   - Branch: feature/pratik
+
+2. Utkarsh Tripathi (Member 2)
+   - Role: Shuttle DAO Specialist
+   - Branch: feature/shuttle-dao / feature/utkarsh
+   - Responsibilities & Completed Contributions:
+     * Domain Model: Shuttle POJO (`com.campus.shuttle_management.model.Shuttle`) with fields:
+       shuttleId, driverName, batteryPct, status, constructors, getters/setters, toString, equals, hashCode.
+     * RowMapper: ShuttleRowMapper (`com.campus.shuttle_management.rowmapper.ShuttleRowMapper`)
+       implementing Spring RowMapper<Shuttle> to cleanly map SQL columns (`shuttle_id`, `driver_name`, `battery_pct`, `status`).
+     * DAO Layer: ShuttleDao & ShuttleDaoImpl (`com.campus.shuttle_management.dao.*`) using JdbcTemplate:
+       - insertShuttle(Shuttle shuttle) [FR-1: Shuttle Fleet Onboarding with generated keys]
+       - findAllShuttles() [FR-1: Shuttle Fleet Inventory Dashboard]
+       - findDeployableShuttles() [FR-2: Parameterized query: status = 'AVAILABLE' and battery_pct > 20%]
+       - updateShuttleBatteryAndStatus(int shuttleId, int newBattery, String newStatus) [FR-3: Battery Depletion]
+       - updateStatus(int shuttleId, String status) [FR-5: Maintenance Flag & Override]
+       - findById(int shuttleId) [Safe Optional lookup]
+     * Database Scripts:
+       - `schema.sql`: Relational DDL for `shuttles`, `routes`, and `trip_logs` with PKs and FK constraints.
+       - `data.sql`: Realistic seed data covering deployable, charging, in-transit, and maintenance fleet states.
+     * Testing:
+       - `ShuttleDaoTest`: Comprehensive test suite verifying all 5 functional requirements against in-memory DB.
+
+3. Atharva (Member 3)
+   - Branch: feature/atharva
+
+4. Himanshu (Member 4)
+   - Branch: feature/himanshu
+
+5. Omkar (Member 5)
+   - Branch: feature/omkar
+
+6. Varun (Member 6)
+   - Role: Fleet Console Runner & UI
+   - Branch: feature/Varun
