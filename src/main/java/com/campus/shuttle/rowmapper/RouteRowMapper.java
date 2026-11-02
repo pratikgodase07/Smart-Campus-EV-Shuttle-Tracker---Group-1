@@ -22,3 +22,4 @@ public class RouteRowMapper implements RowMapper<Route> {
         return route;
     }
 }
+

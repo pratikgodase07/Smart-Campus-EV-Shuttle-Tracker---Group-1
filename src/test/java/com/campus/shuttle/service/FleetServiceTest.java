@@ -96,3 +96,4 @@ class FleetServiceTest {
                 fleetService.logTrip(2, 1, 5));
     }
 }
+

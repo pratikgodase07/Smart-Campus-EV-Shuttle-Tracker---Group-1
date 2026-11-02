@@ -196,3 +196,4 @@ public class FleetServiceImpl implements FleetService {
         return tripLogDao.findAllTripLogs();
     }
 }
+

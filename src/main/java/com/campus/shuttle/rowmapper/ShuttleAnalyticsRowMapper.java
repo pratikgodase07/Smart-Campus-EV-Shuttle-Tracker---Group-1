@@ -32,3 +32,4 @@ public class ShuttleAnalyticsRowMapper implements RowMapper<ShuttleAnalyticsDTO>
         return dto;
     }
 }
+

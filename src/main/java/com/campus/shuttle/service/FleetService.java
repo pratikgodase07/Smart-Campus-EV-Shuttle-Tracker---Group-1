@@ -66,3 +66,4 @@ public interface FleetService {
      */
     List<TripLog> getAllTripLogs();
 }
+

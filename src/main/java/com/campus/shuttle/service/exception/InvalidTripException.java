@@ -5,3 +5,4 @@ public class InvalidTripException extends RuntimeException {
         super(message);
     }
 }
+

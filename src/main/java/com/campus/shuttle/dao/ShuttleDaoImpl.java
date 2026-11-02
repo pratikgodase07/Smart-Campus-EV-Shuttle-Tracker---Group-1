@@ -131,3 +131,4 @@ public class ShuttleDaoImpl implements ShuttleDao {
         return jdbcTemplate.query(sql, analyticsRowMapper);
     }
 }
+

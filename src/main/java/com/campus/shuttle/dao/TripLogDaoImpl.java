@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -47,8 +48,23 @@ public class TripLogDaoImpl implements TripLogDao {
             return ps;
         }, keyHolder);
 
-        if (keyHolder.getKey() != null) {
-            tripLog.setLogId(keyHolder.getKey().intValue());
+        // Extract generated primary key safely even if multiple generated keys (e.g., TIMESTAMP) are returned
+        Map<String, Object> keys = keyHolder.getKeys();
+        if (keys != null) {
+            Object id = keys.get("LOG_ID");
+            if (id == null) {
+                id = keys.get("log_id");
+            }
+            if (id instanceof Number) {
+                tripLog.setLogId(((Number) id).intValue());
+            } else {
+                for (Object val : keys.values()) {
+                    if (val instanceof Number) {
+                        tripLog.setLogId(((Number) val).intValue());
+                        break;
+                    }
+                }
+            }
         }
 
         return rows;

@@ -5,3 +5,4 @@ public class ShuttleNotFoundException extends RuntimeException {
         super(message);
     }
 }
+

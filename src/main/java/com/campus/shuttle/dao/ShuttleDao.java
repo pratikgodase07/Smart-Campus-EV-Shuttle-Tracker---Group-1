@@ -53,3 +53,4 @@ public interface ShuttleDao {
      */
     List<ShuttleAnalyticsDTO> getShuttleTripAnalytics();
 }
+

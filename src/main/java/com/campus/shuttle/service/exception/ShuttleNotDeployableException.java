@@ -5,3 +5,4 @@ public class ShuttleNotDeployableException extends RuntimeException {
         super(message);
     }
 }
+

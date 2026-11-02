@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -40,52 +41,67 @@ public class FleetConsoleRunner implements CommandLineRunner {
 
         printBanner();
 
-        while (running) {
-            printMenu();
-            System.out.print("👉 Enter choice (1 - 9): ");
-            String input = scanner.nextLine().trim();
+        try {
+            while (running) {
+                printMenu();
+                System.out.print("👉 Enter choice (1 - 9): ");
 
-            try {
-                switch (input) {
-                    case "1":
-                        handleRegisterShuttle(scanner);
-                        break;
-                    case "2":
-                        handleViewAllShuttles();
-                        break;
-                    case "3":
-                        handleViewDeployableShuttles();
-                        break;
-                    case "4":
-                        handleLogTrip(scanner);
-                        break;
-                    case "5":
-                        handleViewAnalytics();
-                        break;
-                    case "6":
-                        handlePlaceUnderMaintenance(scanner);
-                        break;
-                    case "7":
-                        handleRechargeAndRelease(scanner);
-                        break;
-                    case "8":
-                        handleViewRoutesAndLogs();
-                        break;
-                    case "9":
-                        System.out.println("\n👋 Exiting Smart Campus EV Shuttle Tracker. Have a great day!\n");
-                        running = false;
-                        break;
-                    default:
-                        System.out.println("⚠️  Invalid choice! Please select an option between 1 and 9.");
+                if (!scanner.hasNextLine()) {
+                    System.out.println("\n[Console Runner] Non-interactive environment detected. Exiting gracefully.");
+                    break;
                 }
-            } catch (Exception e) {
-                System.out.println("❌ Error: " + e.getMessage());
-            }
 
-            if (running) {
-                System.out.println("\nPress [Enter] to continue...");
-                scanner.nextLine();
+                String input = scanner.nextLine().trim();
+
+                try {
+                    switch (input) {
+                        case "1":
+                            handleRegisterShuttle(scanner);
+                            break;
+                        case "2":
+                            handleViewAllShuttles();
+                            break;
+                        case "3":
+                            handleViewDeployableShuttles();
+                            break;
+                        case "4":
+                            handleLogTrip(scanner);
+                            break;
+                        case "5":
+                            handleViewAnalytics();
+                            break;
+                        case "6":
+                            handlePlaceUnderMaintenance(scanner);
+                            break;
+                        case "7":
+                            handleRechargeAndRelease(scanner);
+                            break;
+                        case "8":
+                            handleViewRoutesAndLogs();
+                            break;
+                        case "9":
+                            System.out.println("\n👋 Exiting Smart Campus EV Shuttle Tracker. Have a great day!\n");
+                            running = false;
+                            break;
+                        default:
+                            System.out.println("⚠️  Invalid choice! Please select an option between 1 and 9.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("❌ Error: " + e.getMessage());
+                }
+
+                if (running) {
+                    System.out.println("\nPress [Enter] to continue...");
+                    if (scanner.hasNextLine()) {
+                        scanner.nextLine();
+                    } else {
+                        break;
+                    }
+                }
             }
+        } catch (NoSuchElementException e) {
+            // Graceful exit if input stream ends
+            System.out.println("\nInput stream ended. Exiting console runner.");
         }
     }
 
@@ -115,9 +131,11 @@ public class FleetConsoleRunner implements CommandLineRunner {
     private void handleRegisterShuttle(Scanner scanner) {
         System.out.println("\n--- [FR-1] Onboard New Shuttle ---");
         System.out.print("Enter driver name: ");
+        if (!scanner.hasNextLine()) return;
         String name = scanner.nextLine().trim();
 
         System.out.print("Enter initial battery percentage (0 - 100): ");
+        if (!scanner.hasNextLine()) return;
         int battery;
         try {
             battery = Integer.parseInt(scanner.nextLine().trim());
@@ -154,6 +172,7 @@ public class FleetConsoleRunner implements CommandLineRunner {
     private void handleLogTrip(Scanner scanner) {
         System.out.println("\n--- [FR-3] Log Route Trip & Battery Depletion ---");
         System.out.print("Enter Shuttle ID to dispatch: ");
+        if (!scanner.hasNextLine()) return;
         int shuttleId;
         try {
             shuttleId = Integer.parseInt(scanner.nextLine().trim());
@@ -163,6 +182,7 @@ public class FleetConsoleRunner implements CommandLineRunner {
         }
 
         System.out.print("Enter Route Stop ID: ");
+        if (!scanner.hasNextLine()) return;
         int routeId;
         try {
             routeId = Integer.parseInt(scanner.nextLine().trim());
@@ -172,6 +192,7 @@ public class FleetConsoleRunner implements CommandLineRunner {
         }
 
         System.out.print("Enter number of passengers boarded: ");
+        if (!scanner.hasNextLine()) return;
         int passengers;
         try {
             passengers = Integer.parseInt(scanner.nextLine().trim());
@@ -223,6 +244,7 @@ public class FleetConsoleRunner implements CommandLineRunner {
     private void handlePlaceUnderMaintenance(Scanner scanner) {
         System.out.println("\n--- [FR-5] Manual Maintenance Flag & Override ---");
         System.out.print("Enter Shuttle ID to place under maintenance: ");
+        if (!scanner.hasNextLine()) return;
         int shuttleId;
         try {
             shuttleId = Integer.parseInt(scanner.nextLine().trim());
@@ -243,6 +265,7 @@ public class FleetConsoleRunner implements CommandLineRunner {
     private void handleRechargeAndRelease(Scanner scanner) {
         System.out.println("\n--- Recharge & Release from Maintenance ---");
         System.out.print("Enter Shuttle ID to recharge: ");
+        if (!scanner.hasNextLine()) return;
         int shuttleId;
         try {
             shuttleId = Integer.parseInt(scanner.nextLine().trim());
@@ -252,6 +275,7 @@ public class FleetConsoleRunner implements CommandLineRunner {
         }
 
         System.out.print("Enter recharged battery percentage (21 - 100): ");
+        if (!scanner.hasNextLine()) return;
         int battery;
         try {
             battery = Integer.parseInt(scanner.nextLine().trim());

@@ -18,3 +18,4 @@ public interface TripLogDao {
 
     Optional<TripLog> findById(int logId);
 }
+

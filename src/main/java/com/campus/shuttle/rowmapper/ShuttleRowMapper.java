@@ -23,3 +23,4 @@ public class ShuttleRowMapper implements RowMapper<Shuttle> {
         return shuttle;
     }
 }
+

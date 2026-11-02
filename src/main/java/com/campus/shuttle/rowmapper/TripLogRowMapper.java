@@ -24,3 +24,4 @@ public class TripLogRowMapper implements RowMapper<TripLog> {
         return log;
     }
 }
+

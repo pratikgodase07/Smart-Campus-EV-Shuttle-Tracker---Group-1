@@ -13,3 +13,4 @@ public class SmartCampusShuttleApplication {
         SpringApplication.run(SmartCampusShuttleApplication.class, args);
     }
 }
+
