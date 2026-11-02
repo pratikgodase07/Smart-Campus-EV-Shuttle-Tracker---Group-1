@@ -70,3 +70,4 @@ public interface ShuttleDao {
      */
     Optional<Shuttle> findById(int shuttleId);
 }
+

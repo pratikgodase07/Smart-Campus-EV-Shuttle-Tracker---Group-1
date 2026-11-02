@@ -26,3 +26,4 @@ INSERT INTO trip_logs (shuttle_id, route_id, passengers_boarded, trip_timestamp)
 (1, 2, 18, CURRENT_TIMESTAMP),
 (2, 3, 12, CURRENT_TIMESTAMP),
 (4, 4, 15, CURRENT_TIMESTAMP);
+
