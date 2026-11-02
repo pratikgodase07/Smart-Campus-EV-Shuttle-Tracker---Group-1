@@ -1,43 +1,38 @@
-Smart Campus EV Shuttle Tracker
+Smart Campus EV Shuttle Tracker (Group 1)
+Spring Mini Hackathon 2026 - Problem Statement #1
 
-==================================================
-Team Members & Assigned Roles:
-==================================================
+================================================================================
+Team Members & Contributions Summary:
+================================================================================
 
-1. Pratik Godase (Member 1)
-   - Role: Project Lead & Architecture Setup
+1. Utkarsh Tripathi (Member 2)
+   - Roles: Shuttle DAO Specialist & Architecture Lead
+   - Branch: feature/shuttle-dao / main
+   - Contributions:
+     * Domain Models: Shuttle, Route, TripLog, ShuttleAnalyticsDTO, TripResult POJOs
+     * RowMappers: ShuttleRowMapper, RouteRowMapper, TripLogRowMapper, ShuttleAnalyticsRowMapper
+     * DAO Layer: ShuttleDao, RouteDao, TripLogDao (JdbcTemplate with parameterized queries)
+     * Service Layer: FleetService & FleetServiceImpl (Business logic, battery depletion, auto-maintenance < 15%)
+     * Interactive UI: FleetConsoleRunner (Full 9-option interactive terminal menu)
+     * Database Scripts: schema.sql (DDL with relational constraints) and data.sql (seed data)
+     * Test Suite: Comprehensive unit & integration tests covering all 5 functional requirements
+
+2. Pratik Godase (Member 1)
+   - Role: Project Lead & Initial Repository Scaffolding
    - Branch: feature/pratik
 
-2. Utkarsh Tripathi (Member 2)
-   - Role: Shuttle DAO Specialist
-   - Branch: feature/shuttle-dao / feature/utkarsh
-   - Responsibilities & Completed Contributions:
-     * Domain Model: Shuttle POJO (`com.campus.shuttle_management.model.Shuttle`) with fields:
-       shuttleId, driverName, batteryPct, status, constructors, getters/setters, toString, equals, hashCode.
-     * RowMapper: ShuttleRowMapper (`com.campus.shuttle_management.rowmapper.ShuttleRowMapper`)
-       implementing Spring RowMapper<Shuttle> to cleanly map SQL columns (`shuttle_id`, `driver_name`, `battery_pct`, `status`).
-     * DAO Layer: ShuttleDao & ShuttleDaoImpl (`com.campus.shuttle_management.dao.*`) using JdbcTemplate:
-       - insertShuttle(Shuttle shuttle) [FR-1: Shuttle Fleet Onboarding with generated keys]
-       - findAllShuttles() [FR-1: Shuttle Fleet Inventory Dashboard]
-       - findDeployableShuttles() [FR-2: Parameterized query: status = 'AVAILABLE' and battery_pct > 20%]
-       - updateShuttleBatteryAndStatus(int shuttleId, int newBattery, String newStatus) [FR-3: Battery Depletion]
-       - updateStatus(int shuttleId, String status) [FR-5: Maintenance Flag & Override]
-       - findById(int shuttleId) [Safe Optional lookup]
-     * Database Scripts:
-       - `schema.sql`: Relational DDL for `shuttles`, `routes`, and `trip_logs` with PKs and FK constraints.
-       - `data.sql`: Realistic seed data covering deployable, charging, in-transit, and maintenance fleet states.
-     * Testing:
-       - `ShuttleDaoTest`: Comprehensive test suite verifying all 5 functional requirements against in-memory DB.
+3. Varun (Member 6)
+   - Role: Fleet Console Runner & UI Support
+   - Branch: feature/Varun
 
-3. Atharva (Member 3)
+4. Atharva (Member 3)
+   - Role: Route Management
    - Branch: feature/atharva
 
-4. Himanshu (Member 4)
+5. Himanshu (Member 4)
+   - Role: Multi-Table Joined Analytics Support
    - Branch: feature/himanshu
 
-5. Omkar (Member 5)
+6. Omkar (Member 5)
+   - Role: Business Rules & Validation Support
    - Branch: feature/omkar
-
-6. Varun (Member 6)
-   - Role: Fleet Console Runner & UI
-   - Branch: feature/Varun
